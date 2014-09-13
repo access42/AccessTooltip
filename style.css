@@ -1,0 +1,13 @@
+.Ctooltip{
+	position:absolute;
+	background-color:#FFFFF0;
+	border:1px solid gray;
+	border-radius:3px;
+	padding:3px;
+	box-shadow:2px 2px 2px #000;
+	color:#000;
+	font-size:80%;
+}
+a{
+	text-decoration:none;
+}
