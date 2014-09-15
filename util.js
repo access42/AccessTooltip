@@ -72,4 +72,7 @@ function getWindowHeight() {
     }
     return windowHeight;
 }
+function ftest(){
+	alert('toto');
+}
 // @license-end
