@@ -12,6 +12,6 @@ Simply link the JS file or copy/paste the function's code in your own JS script 
 If you link the JS file you may want to avoid function name conflict with another JS code by using a self-executing anonymous function with this pattern :
 
     (function(){
-        [code here...)
+        code here...
     }();
     
