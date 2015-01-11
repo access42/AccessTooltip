@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+<title>AccessTooltip</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript" src="AccessTooltip.js"></script>
+<link rel="stylesheet" href="highlight/styles/tomorrow-night-eighties.css" type="text/css" media="screen" />
+<script src="highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<div id="screen">
+	<header role="banner">
+		<ul class="help">
+			<li><a href="#main">Contenu</a></li>
+		</ul>
+		<h1>AccessTooltip</h1>
+	</header>
+	<nav role="navigation" class="Cboth" aria-label="menu de navigation">
+		<ul id="menu">
+			<li><a href="#presentation"><span class="bullet"><span class="Sbullet"></span></span>Présentation</a></li>
+			<li><a href="#imple"><span class="bullet"><span class="Sbullet"></span></span>Comment l'utiliser</a></li>
+		</ul>
+	</nav>
+	<main role="main">
+		<section>
+			<h2 class="CTitre">Présentation</h2>
+			<p>Une fonction JavaScript permettant de rendre les <code>title</code> accessible au clavier</p>
+			<h3>Comment ça fonctionne ?</h3>
+			<p>Au chargement de la page le <code>script</code> génère une infobulle accesssible au clavier via la touche de <kbd>tabulation</kbd> pour tous les éléments, paramétrés dans le <code>script</code>, possédant un <code>title</code></p>
+			<h3>Démonstration</h3>
+			<p><a href="http://access42.net/MFP-lecteur-video-accessible.html" title="MFP VideoPlayer, le lecteur vidéo accessible">MFP VidéoPlayer</a></p>
+			<p>Le <abbr title="Référentiel Général pour l'Accessibilité de l'Administration">RGAA</abbr></p>
+			<p><button type="button" title="Un bouton équipé d'un title">cliquer</button></p>
+			<p><img src="access42.png" title="Access42, Accessibilité numérique : expertise, conseil et formation" alt="Access42.net" /></p>
+			<form>
+				<input type="text" title="un champ de formulaire, labellisé par un title" />
+			</form>
+		</section>
+		<section>
+			<h2 class="CTitre">Comment l'utiliser</h2>
+			<p>Copier le <code>script</code> et l'appeller dans le <code>head</code> de la page : </p>
+			<pre><code class="html">
+				&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
+			</code>
+			</pre>
+		</section>
+	</main>
+	<footer role="contentinfo" class="Cboth">
+		<ul>
+			<li class="site"><a href="http://access42.net/"><img src="access42.png" alt="Access42.net" /></a></li>
+			<li class="licence"><a href="http://www.gnu.org/licenses/gpl.html"><img lang="en" src="gplv3.png" alt="Free Software - GPL 3 " /></a></li>
+		</ul>
+	</footer>
+</div>
+</body>
+</html>
