@@ -25,26 +25,69 @@
 	</nav>
 	<main role="main">
 		<section>
-			<h2 class="CTitre">Présentation</h2>
-			<p>Une fonction JavaScript permettant de rendre les <code>title</code> accessible au clavier</p>
+			<h2 class="CTitre" id="presentation">Présentation</h2>
+			<p>AccessTooltip est un script JavaScript permettant de rendre les <code>title</code> accessibles au clavier</p>
 			<h3>Comment ça fonctionne ?</h3>
-			<p>Au chargement de la page le <code>script</code> génère une infobulle accesssible au clavier via la touche de <kbd>tabulation</kbd> pour tous les éléments, paramétrés dans le <code>script</code>, possédant un <code>title</code></p>
+			<p>Le <code>script</code> génère une infobulle accesssible au clavier via la touche de <kbd>tabulation</kbd> pour tous les éléments, paramétrés dans le <code>script</code>, possédant un <code>title</code>.</p>
+			<p>Pour les éléments <code>abbr</code> et <code>img</code> le script rends ces éléments focusables via <code>tabindex="0"</code>.</p>
+			<p>Pour les champs de formulaire possédant un <code>title</code> à la place d'un <code>label</code> le script créé une association explicite via la propriété <code>aria-labelledby</code>.</p>
 			<h3>Démonstration</h3>
+			<h4>Liens</h4>
 			<p><a href="http://access42.net/MFP-lecteur-video-accessible.html" title="MFP VideoPlayer, le lecteur vidéo accessible">MFP VidéoPlayer</a></p>
+			<h4>Abbréviation</h4>
 			<p>Le <abbr title="Référentiel Général pour l'Accessibilité de l'Administration">RGAA</abbr></p>
+			<h4>Bouton</h4>
 			<p><button type="button" title="Un bouton équipé d'un title">cliquer</button></p>
+			<h4>Image</h4>
 			<p><img src="access42.png" title="Access42, Accessibilité numérique : expertise, conseil et formation" alt="Access42.net" /></p>
+			<h4>Champ de formulaire</h4>
 			<form>
 				<input type="text" title="un champ de formulaire, labellisé par un title" />
 			</form>
 		</section>
 		<section>
-			<h2 class="CTitre">Comment l'utiliser</h2>
-			<p>Copier le <code>script</code> et l'appeller dans le <code>head</code> de la page : </p>
-			<pre><code class="html">
-				&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
-			</code>
-			</pre>
+			<h2 class="CTitre" id="imple">Comment l'utiliser</h2>
+			<p>Copier le <code>script</code> et l'appeller dans le <code>head</code> de la page, ou comme dernier élément de <code>body</code></p>
+<pre>
+<code class="html">
+	&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
+</code>
+</pre>
+			<p>Créer une classe CSS pour styler le tooltip (attention, la position "absolue" est requise) :</p>
+<pre>
+<code>
+	Ctooltip{
+		position:absolute;
+		background-color:#FFFFF0;
+		border:1px solid gray;
+		border-radius:3px;
+		padding:3px;
+		box-shadow:2px 2px 2px #000;
+		color:#000;
+		font-size:80%;
+	}
+</code>
+</pre>
+			<p>Editer le script et paramétrer les options : </p>
+<pre>
+<code class="javascript">
+	/* 
+	*** Parameters *** 
+	- required objs : query selector for elements to set (tagName or any CSS selector)
+	- required tooltipClassName : tooltip CSS design classname
+	- optionnal mouse : null to ignore, true to set (replace native title by tooltip on mouseover)
+	- optionnal abbr : null to ignore, true to set (this will set the abbr element for keyboard focus with tabindex='0')
+	- optionnal img : null to ignore, true to set (this will set the img element for keyboard focus with tabindex='0')
+	*/
+	var options = {
+		objs : 'a, button, input, textarea, select',
+		tooltipClassName : 'Ctooltip',
+		mouse : true,
+		abbr : true,
+		img : true
+	}
+</code>
+</pre>	
 		</section>
 	</main>
 	<footer role="contentinfo" class="Cboth">

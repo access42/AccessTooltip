@@ -12,27 +12,37 @@ Copyright (c) 2015 Access42, access42.net
 var AccessTooltip = ( function(){
 
 	'use strict';
-
-	/* set objs query selector */
-	var objs = 'a, button, input, textarea, select';
-	/* set className for the tooltip */
-	var tooltipClassName = 'Ctooltip';
-	/* array of element with no child (switch for tooltip insert method) */
-	var noChild = new Array('INPUT','SELECT','TEXTAREA','IMG');
-	/*	
-	*** Constructor ***
-	-required objs : query selector
-	-optionnal mouse : null to ignore, true to set (this will replace native title)
-	-optionnal abbr : null to ignore, true to set (this will set the abbr element for keyboard focus with tabindex='0')
-	-optionnal img : null to ignore, true to set (this will set the img element for keyboard focus with tabindex='0')
+	
+	/* 
+	*** Parameters *** 
+	- required objs : query selector for elements to set (tagName or any CSS selector)
+	- required tooltipClassName : tooltip CSS design classname
+	- optionnal mouse : null to ignore, true to set (replace native title by tooltip on mouseover)
+	- optionnal abbr : null to ignore, true to set (this will set the abbr element for keyboard focus with tabindex='0')
+	- optionnal img : null to ignore, true to set (this will set the img element for keyboard focus with tabindex='0')
 	*/
-	var Tooltip = function( objs, mouse, abbr, img ){
-		var tabList = document.querySelectorAll(objs);
+	var options = {
+		objs : 'a, button, input, textarea, select',
+		tooltipClassName : 'Ctooltip',
+		mouse : true,
+		abbr : true,
+		img : true
+	}
+	/* *** End ¨Parameters *** */
+	/* array of elements with no child (switch for tooltip insert method) */
+	var noChild = new Array('INPUT','SELECT','TEXTAREA','IMG');
+	/* Onload Init */
+	window.addEventListener('DOMContentLoaded', function() {
+		var toolTip = new Tooltip( options );
+	}, false );
+	/* *** Constructor *** */
+	var Tooltip = function( options ){
+		var tabList = document.querySelectorAll(options.objs);
 		for ( var i = 0, len = tabList.length ; i < len ; i++ ){
 			if( tabList[i].getAttribute( 'title' ) ) setEvent( tabList[i] );
 		}
 		// abbr option
-		if( abbr ){
+		if( options.abbr ){
 			var abbrList = document.getElementsByTagName ('abbr');
 			for (var i = 0, len = abbrList.length; i < len; i++ ){
 				if( abbrList[i].getAttribute( 'title' ) ){
@@ -42,7 +52,7 @@ var AccessTooltip = ( function(){
 			}
 		}
 		// img option
-		if( img ){
+		if( options.img ){
 			var imgList = document.getElementsByTagName ('img');
 			for (var i = 0, len = imgList.length; i < len; i++ ){
 				if( imgList[i].getAttribute( 'title' ) ){
@@ -60,7 +70,7 @@ var AccessTooltip = ( function(){
 				resetTooltip( this );
 			},false);
 			//mouse option
-			if( mouse ){
+			if( options.mouse ){
 				obj.addEventListener('mouseover',function(){
 					setTooltip( this );
 				},false);
@@ -76,9 +86,8 @@ var AccessTooltip = ( function(){
 		var txt = obj.getAttribute( 'title' );
 		var txtTooltip = document.createTextNode( txt );
 		if( txt != '' ){
-			console.log(noChild.indexOf( obj.tagName ) );
 			spanTooltip.appendChild( txtTooltip );
-			spanTooltip.setAttribute( 'class', tooltipClassName );
+			spanTooltip.setAttribute( 'class', options.tooltipClassName );
 			if( noChild.indexOf( obj.tagName ) > -1 ){
 				obj.parentNode.insertBefore( spanTooltip, obj.nextSibling );
 				obj.setAttribute('aria-labelledby','accesstooltipID');
@@ -112,7 +121,7 @@ var AccessTooltip = ( function(){
 			obj.removeAttributeNode( obj.getAttributeNode('aria-labelledby') );
 		}
 		else{
-			var spanTooltip = obj.querySelector('.' + tooltipClassName);
+			var spanTooltip = obj.querySelector('.' + options.tooltipClassName);
 			var txtTooltip = spanTooltip.firstChild.nodeValue;
 			obj.setAttribute( 'title', txtTooltip );
 			obj.removeChild( spanTooltip );
@@ -153,10 +162,6 @@ var AccessTooltip = ( function(){
 		}
 		return windowHeight;
 	}
-	/* Onload Init */
-	window.addEventListener('DOMContentLoaded', function() {
-		var toolTip = new Tooltip( objs, true, true, true);
-	}, false );
 } )();
 
 // @license-end
