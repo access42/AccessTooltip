@@ -25,7 +25,7 @@
 	</nav>
 	<main role="main">
 		<section>
-			<h2 class="CTitre" id="presentation">Présentation</h2>
+			<h2 class="CTitre" id="presentation" tabindex="-1">Présentation</h2>
 			<p>AccessTooltip est un script JavaScript permettant de rendre les <code>title</code> accessibles au clavier</p>
 			<h3>Comment ça fonctionne ?</h3>
 			<p>Le <code>script</code> génère une infobulle accesssible au clavier via la touche de <kbd>tabulation</kbd> pour tous les éléments, paramétrés dans le <code>script</code>, possédant un <code>title</code>.</p>
@@ -33,7 +33,8 @@
 			<p>Pour les champs de formulaire possédant un <code>title</code> à la place d'un <code>label</code> le script créé une association explicite via la propriété <code>aria-labelledby</code>.</p>
 			<h3>Démonstration</h3>
 			<h4>Liens</h4>
-			<p><a href="http://access42.net/MFP-lecteur-video-accessible.html" title="MFP VideoPlayer, le lecteur vidéo accessible">MFP VidéoPlayer</a></p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href="http://access42.net/MFP-lecteur-video-accessible.html" title="MFP VideoPlayer, le lecteur vidéo accessible">MFP VidéoPlayer</a></p>
+			<p><a href="http://access42.net/MFP-lecteur-video-accessible.html" title="Title 2">Lien 2</a></p>
 			<h4>Abbréviation</h4>
 			<p>Le <abbr title="Référentiel Général pour l'Accessibilité de l'Administration">RGAA</abbr></p>
 			<h4>Bouton</h4>
@@ -46,7 +47,7 @@
 			</form>
 		</section>
 		<section>
-			<h2 class="CTitre" id="imple">Comment l'utiliser</h2>
+			<h2 class="CTitre" id="imple" tabindex="-1">Comment l'utiliser</h2>
 			<p>Copier le <code>script</code> et l'appeller dans le <code>head</code> de la page, ou comme dernier élément de <code>body</code></p>
 <pre>
 <code class="html">
@@ -75,16 +76,24 @@
 	*** Parameters *** 
 	- required objs : query selector for elements to set (tagName or any CSS selector)
 	- required tooltipClassName : tooltip CSS design classname
-	- optionnal mouse : null to ignore, true to set (replace native title by tooltip on mouseover)
-	- optionnal abbr : null to ignore, true to set (this will set the abbr element for keyboard focus with tabindex='0')
-	- optionnal img : null to ignore, true to set (this will set the img element for keyboard focus with tabindex='0')
+	- required toolTipBetween : distance in pixels between the tooltip and the focused element
+	- optionnal tooltipUp : false to set the tooltip above, true to set over the focused element
+	- optionnal mouse : false to ignore, true to set (replace native title by tooltip on mouseover)
+	- optionnal abbr : false to ignore, true to set (this will set the abbr element for keyboard focus with tabindex='0')
+	- optionnal img : false to ignore, true to set (this will set the img element for keyboard focus with tabindex='0')
+	- optionnal temp : false to ignore, true to set a displaying delay
+	- optionnal tempDelay : the displaying delay in millisecondes
 	*/
 	var options = {
 		objs : 'a, button, input, textarea, select',
 		tooltipClassName : 'Ctooltip',
+		toolTipBetween : 5,
+		toolTipUp : false,
 		mouse : true,
 		abbr : true,
-		img : true
+		img : true,
+		temp : true,
+		tempDelay : 4000
 	}
 </code>
 </pre>	

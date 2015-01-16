@@ -8,6 +8,7 @@
 body{
 	font-size:80%;
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+		background-color:#F4F1EC
 }
 header{
 	border:1px solid #C98BC0;
@@ -132,6 +133,8 @@ code{
 }
 .Ctooltip{
 	position:absolute;
+	z-index:1000;
+	left: - 10000000px;
 	background-color:#FFFFF0;
 	border:1px solid gray;
 	border-radius:3px;
