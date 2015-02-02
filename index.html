@@ -4,7 +4,6 @@
 <title>AccessTooltip</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-<script type="text/javascript" src="AccessTooltip.js"></script>
 <link rel="stylesheet" href="highlight/styles/tomorrow-night-eighties.css" type="text/css" media="screen" />
 <script src="highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
@@ -26,11 +25,9 @@
 	<main role="main">
 		<section>
 			<h2 class="CTitre" id="presentation" tabindex="-1">Présentation</h2>
-			<p>AccessTooltip est un script JavaScript permettant de rendre les <code>title</code> accessibles au clavier</p>
+			<p>AccessTooltip est une fonctionJavaScript permettant de rendre les <code>title</code> accessibles au clavier</p>
 			<h3>Comment ça fonctionne ?</h3>
-			<p>Le <code>script</code> génère une infobulle accesssible au clavier via la touche de <kbd>tabulation</kbd> pour tous les éléments, paramétrés dans le <code>script</code>, possédant un <code>title</code>.</p>
-			<p>Pour les éléments <code>abbr</code> et <code>img</code> le script rends ces éléments focusables via <code>tabindex="0"</code>.</p>
-			<p>Pour les champs de formulaire possédant un <code>title</code> à la place d'un <code>label</code> le script créé une association explicite via la propriété <code>aria-labelledby</code>.</p>
+			<p>La <code>fonction</code> génère une infobulle accesssible au clavier via la touche de <kbd>tabulation</kbd> pour tous les éléments passés en paramètre, possédant un <code>title</code>.</p>
 			<h3>Démonstration</h3>
 			<h4>Liens</h4>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href="http://access42.net/MFP-lecteur-video-accessible.html" title="MFP VideoPlayer, le lecteur vidéo accessible">MFP VidéoPlayer</a></p>
@@ -48,53 +45,49 @@
 		</section>
 		<section>
 			<h2 class="CTitre" id="imple" tabindex="-1">Comment l'utiliser</h2>
-			<p>Copier le <code>script</code> et l'appeller dans le <code>head</code> de la page, ou comme dernier élément de <code>body</code></p>
+			<p>Insérer la fonction comme comme dernier élément de <code>body</code></p>
 <pre>
 <code class="html">
-	&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
 </code>
 </pre>
 			<p>Créer une classe CSS pour styler le tooltip (attention, la position "absolue" est requise) :</p>
 <pre>
 <code>
-	Ctooltip{
-		position:absolute;
-		background-color:#FFFFF0;
-		border:1px solid gray;
-		border-radius:3px;
-		padding:3px;
-		box-shadow:2px 2px 2px #000;
-		color:#000;
-		font-size:80%;
-	}
+Ctooltip{
+	position:absolute;
+	background-color:#FFFFF0;
+	border:1px solid gray;
+	border-radius:3px;
+	padding:3px;
+	box-shadow:2px 2px 2px #000;
+	color:#000;
+	font-size:80%;
+}
 </code>
 </pre>
-			<p>Editer le script et paramétrer les options : </p>
+			<p>Insérer l'appel de fonction comme dernier élément de <code>body</code> et utiliser les paramètres pour la personnaliser : </p>
 <pre>
 <code class="javascript">
-	/* 
-	*** Parameters *** 
-	- required objs : query selector for elements to set (tagName or any CSS selector)
-	- required tooltipClassName : tooltip CSS design classname
-	- required toolTipBetween : distance in pixels between the tooltip and the focused element
-	- optionnal tooltipUp : false to set the tooltip above, true to set over the focused element
-	- optionnal mouse : false to ignore, true to set (replace native title by tooltip on mouseover)
-	- optionnal abbr : false to ignore, true to set (this will set the abbr element for keyboard focus with tabindex='0')
-	- optionnal img : false to ignore, true to set (this will set the img element for keyboard focus with tabindex='0')
-	- optionnal temp : false to ignore, true to set a displaying delay
-	- optionnal tempDelay : the displaying delay in millisecondes
-	*/
-	var options = {
-		objs : 'a, button, input, textarea, select',
-		tooltipClassName : 'Ctooltip',
-		toolTipBetween : 5,
-		toolTipUp : false,
-		mouse : true,
-		abbr : true,
-		img : true,
-		temp : true,
-		tempDelay : 4000
-	}
+/*
+** Paramètres *** 
+	- requis objs : liste des sélecteurs CSS correspondant aux éléments à traiter.
+	- requis tooltipClassName : classe CSS utilisée pour la bulle d'aide
+	- requis toolTipBetween : décalage vertical, en pixel, entre la bulle d'aide et l'élément selectionné
+	- optionnel tooltipUp : false pour faire apparaitre la bulle d'aide en dessous de l'élément selectionné, true pour la faire apparaitre au dessus
+	- optionnel mouse : true pour remplacer, à la souris, le title par la bulle d'aide
+	- optionnel tempDelay : temps d'affichage de la bulle d'aide en millisecondes (0 pour qu'elle reste visible jusqu'à la perte de focus)
+*/
+&lt;script type="text/javascript"&gt;
+AccessTooltip({
+	objs : 'a, button, input, textarea, select',
+	tooltipClassName : 'Ctooltip',
+	toolTipBetween : 5,
+	toolTipUp : false,
+	mouse : true,
+	tempDelay : 4000
+});
+&lt;/script&gt;
 </code>
 </pre>	
 		</section>
@@ -106,5 +99,16 @@
 		</ul>
 	</footer>
 </div>
+<script type="text/javascript" src="AccessTooltip.js"></script>
+<script type="text/javascript">
+	AccessTooltip({
+		objs : 'a, button, input, textarea, select, abbr, img',
+		tooltipClassName : 'Ctooltip',
+		toolTipBetween : 5,
+		toolTipUp : false,
+		mouse : true,
+		tempDelay : 4000
+	});
+</script>
 </body>
 </html>

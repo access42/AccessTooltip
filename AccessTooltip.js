@@ -8,98 +8,75 @@ Copyright (c) 2015 Access42, access42.net
 
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later
 
-/* *** AccessTooltip *** */
-var AccessTooltip = ( function(){
-
-	'use strict';
-	
-	/* 
+/*
 	*** Parameters *** 
 	- required objs : query selector for elements to set (tagName or any CSS selector)
 	- required tooltipClassName : tooltip CSS design classname
 	- required toolTipBetween : distance in pixels between the tooltip and the focused element
 	- optionnal tooltipUp : false to set the tooltip above, true to set over the focused element
-	- optionnal mouse : false to ignore, true to set (replace native title by tooltip on mouseover)
-	- optionnal abbr : false to ignore, true to set (this will set the abbr element for keyboard focus with tabindex='0')
-	- optionnal img : false to ignore, true to set (this will set the img element for keyboard focus with tabindex='0')
-	- optionnal temp : false to ignore, true to set a displaying delay
-	- optionnal tempDelay : the displaying delay in millisecondes
-	*/
-	var options = {
+	- optionnal mouse : false to ignore, true to set mouse mode(replace native title by tooltip on mouseover)
+	- optionnal tempDelay : displaying delay in millisecondes ( O to ignore)
+
+    *** implementation ***
+Insert this code right before the closing </body> element of your HTML document. 
+<script type="text/javascript" src="AccessTooltip.js"></script>
+<script type="text/javascript">
+	new AccessTooltip({
 		objs : 'a, button, input, textarea, select',
 		tooltipClassName : 'Ctooltip',
 		toolTipBetween : 5,
 		toolTipUp : false,
 		mouse : true,
-		abbr : true,
-		img : true,
-		temp : true,
 		tempDelay : 4000
-	}
-	/* *** End ¨Parameters *** */
-	/* Onload Init */
-	window.addEventListener('DOMContentLoaded', function() {
-		/* tooltip instance */
-		var tooltip = new Tooltip(options);
-	}, false );
-	/* *** Constructor *** */
-	var Tooltip = function( options ){
-		/* set tooltip */
-		var divTooltip = document.createElement('DIV');
-		document.body.appendChild( divTooltip);
-		divTooltip.setAttribute('id','AccessibleTooltip');
-		divTooltip.setAttribute( 'class', options.tooltipClassName );
-		divTooltip.style.display = 'none';
-		var tabList = document.querySelectorAll(options.objs);
-		for ( var i = 0, len = tabList.length ; i < len ; i++ ){
-			if( tabList[i].getAttribute( 'title' ) ) setEvent( tabList[i] );
-		}
-		// abbr option
-		if( options.abbr ){
-			var abbrList = document.getElementsByTagName ('abbr');
-			for (var i = 0, len = abbrList.length; i < len; i++ ){
-				if( abbrList[i].getAttribute( 'title' ) ){
-					abbrList[i].setAttribute('tabindex','0');
-					setEvent(abbrList[i]);
-				}
-			}
-		}
-		// img option
-		if( options.img ){
-			var imgList = document.getElementsByTagName ('img');
-			for (var i = 0, len = imgList.length; i < len; i++ ){
-				if( imgList[i].getAttribute( 'title' ) ){
-					imgList[i].setAttribute('tabindex','0');
-					setEvent(imgList[i]);
-				}
-			}
-		}		
-		//setEvent listeners
-		function setEvent( obj ){
-			if( unsupported() ){
-				obj.addEventListener('focus',function(event){
+	});
+</script>
+
+/* *** AccessTooltip *** */
+function AccessTooltip(options){
+
+	'use strict';
+	
+	/* set tooltip */
+	var divTooltip = document.createElement( 'DIV' );
+	document.body.appendChild( divTooltip );
+	divTooltip.setAttribute( 'id','AccessibleTooltip' );
+	divTooltip.setAttribute( 'class', options.tooltipClassName );
+	divTooltip.style.display = 'none';
+	/* set elements targeted */
+	var tabList = document.querySelectorAll(options.objs);
+	for ( var i = 0, len = tabList.length ; i < len ; i++ ){
+		if( tabList[i].getAttribute( 'title' ) ) {
+			tabList[i].setAttribute('tabindex','0');
+			//set Event listeners
+			if( Unsupported() ){
+				tabList[i].addEventListener( 'focus',function(){
 					setTooltip( this );
-				},true);
-				obj.addEventListener('blur', function(){
-					resetTooltip( this );
+				},false);
+				tabList[i].addEventListener( 'blur', function(){
+					setTooltip( this, true );
 				},false);
 			}
 			//mouse option
 			if( options.mouse ){
-				obj.addEventListener( 'mouseover',function(){
-					setTooltip( this, options.mouse );
+				tabList[i].addEventListener( 'mouseover',function(){
+					setTooltip( this, false, true );
 				},false);
-				obj.addEventListener('mouseout',function(){
-					resetTooltip( this, options.mouse );
+				tabList[i].addEventListener('mouseout',function(){
+					setTooltip( this, true, true );
 				},false);
 			}
 		}
 	}
+	/* set displaying delay */
+	var timeoutID;
+	/* IE11 detection */
+	var unsupported = Unsupported();
 	/* *** AccessTooltip dependencies *** */
-	function setTooltip( obj, mouse ){
-		if( obj.getAttribute( 'title' ) ){
-			//get tooltip
-			var divTooltip = document.getElementById('AccessibleTooltip');
+	function setTooltip( obj, reset, mouse ){
+		if( reset ){
+			clearTooltip ( obj, mouse );
+		}
+		else if( obj.getAttribute( 'title' ) ){
 			var txt = obj.getAttribute( 'title' );
 			var txtTooltip = document.createTextNode( txt );
 			//Set tooltip
@@ -108,17 +85,24 @@ var AccessTooltip = ( function(){
 				//position
 				var posRight = divTooltip.offsetLeft + divTooltip.offsetWidth;
 				var resetPosRight = 0;
-				if( posRight > getWindowWidth() ) resetPosRight = posRight - getWindowWidth();
+				var windowWidth=document.body.clientWidth;
+				var windowHeight=document.body.clientHeight;
+				if( posRight > windowWidth ) resetPosRight = posRight - windowWidth;
 				var setPos = options.toolTipBetween + obj.offsetHeight;
 				var toolTipTop = position( obj, 'y' ) + setPos;
 				if( options.toolTipUp) toolTipTop = position( obj, 'y' ) - setPos - 5;
 				divTooltip.style.top = toolTipTop + 'px';
 				divTooltip.style.left = position( obj, 'x' ) + obj.offsetWidth * 25/100 - resetPosRight + 'px';
 				divTooltip.style.display = 'block';
+				if( divTooltip.firstChild ) divTooltip.removeChild( divTooltip.firstChild );
 				divTooltip.appendChild( txtTooltip );
-				if( options.temp){
-					setTimeout( function(){
-						document.getElementById('AccessibleTooltip').style.display='none';
+				if( options.tempDelay > 0){
+					timeoutID = setTimeout( function(){
+						if( divTooltip.firstChild ) {
+							if( mouse ) obj.setAttribute('title', divTooltip.firstChild.nodeValue);
+							divTooltip.removeChild( divTooltip.firstChild );
+							divTooltip.style.display = 'none';
+						}
 					}, options.tempDelay);
 				}
 			}
@@ -127,48 +111,13 @@ var AccessTooltip = ( function(){
 			}
 		}
 	}
-	function resetTooltip( obj, mouse ){
-		var target = document.getElementById('AccessibleTooltip');
-		if( target.firstChild ) {
-			if( mouse )obj.setAttribute('title', target.firstChild.nodeValue);
-			document.getElementById('AccessibleTooltip').removeChild( target.firstChild );
-			target.style.display = 'none';
+	function clearTooltip ( obj, mouse ){
+		if( divTooltip.firstChild ) {
+			if( mouse )obj.setAttribute('title', divTooltip.firstChild.nodeValue);
+			divTooltip.removeChild( divTooltip.firstChild );
+			divTooltip.style.display = 'none';
 		}
-	}
-	/* window dimension */
-	function getWindowWidth() {
-		var windowWidth = 0;
-		if ( typeof( window.innerWidth ) == 'number' ) {
-			windowWidth = window.innerWidth;
-		} 
-		else {
-			if ( document.documentElement && document.documentElement.clientWidth ) {
-				windowWidth = document.documentElement.clientWidth;
-			} 
-			else {
-				if ( document.body && document.body.clientWidth ) {
-					windowWidth=document.body.clientWidth;
-				}
-			}
-		}
-	 return windowWidth;
-	}
-	function getWindowHeight() {
-		var windowHeight=0;
-		if ( typeof( window.innerHeight ) == 'number' ) {
-			windowHeight = window.innerHeight;
-		} 
-		else {
-			if ( document.documentElement && document.documentElement.clientHeight ) {
-				windowHeight = document.documentElement.clientHeight;
-			} 
-			else {
-				if ( document.body && document.body.clientHeight ) {
-					windowHeight=document.body.clientHeight;
-				}
-			}
-		}
-		return windowHeight;
+		clearTimeout(timeoutID); 
 	}
 	// obj position
 	function position( obj, coordinate){
@@ -180,18 +129,27 @@ var AccessTooltip = ( function(){
 		}
 		return pos;
 	}
-	// IE11 is the only browser wich expose the title on keyboard focus
-	// Below a little trash IE11 filtering method
+	// IE11 on windows 8 is the only browser wich expose the title on keyboard focus
+	// Below a little trash, but sufficient, IE11/windows 8 filtering method
 	// filter is based on the new user agent string for IE11+
-	function unsupported(){
+	function Unsupported(){
 		var objUA = window.navigator.userAgent;
+		//If IE 11
 		if( objUA.indexOf('Trident') > 0 && objUA.indexOf('MSIE') < 0 ){
-			return false;
+			//If windows 7 then title keyboard focus is unsupported
+			if(objUA.indexOf('NT 6.1') > 0){
+				return true;
+			}
+			//If windows 8+ title keyboard focus is supported
+			else {
+			 return false;
+			}
 		}
+		//If not IE title keyboard focus is unsupported
 		else {
 		return true;
 		}
 	}
-} )();
+};
 
 // @license-end
