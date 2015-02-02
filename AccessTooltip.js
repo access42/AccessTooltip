@@ -1,6 +1,8 @@
 
 /**
 AccessTooltip
+A lightweight Javascript function to make the title attribute accessible for keyboard user
+
 GPL licence
 https://github.com/access42/AccessTooltip
 Copyright (c) 2015 Access42, access42.net
@@ -21,7 +23,7 @@ Copyright (c) 2015 Access42, access42.net
 Insert this code right before the closing </body> element of your HTML document. 
 <script type="text/javascript" src="AccessTooltip.js"></script>
 <script type="text/javascript">
-	new AccessTooltip({
+	AccessTooltip({
 		objs : 'a, button, input, textarea, select',
 		tooltipClassName : 'Ctooltip',
 		toolTipBetween : 5,
