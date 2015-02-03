@@ -38,6 +38,10 @@ function AccessTooltip(options){
 
 	'use strict';
 	
+	/* set displaying delay */
+	var timeoutID;
+	/* IE11/windows8+ detection */
+	var unsupported = Unsupported();
 	/* set tooltip */
 	var divTooltip = document.createElement( 'DIV' );
 	document.body.appendChild( divTooltip );
@@ -50,7 +54,7 @@ function AccessTooltip(options){
 		if( tabList[i].getAttribute( 'title' ) ) {
 			tabList[i].setAttribute('tabindex','0');
 			//set Event listeners
-			if( Unsupported() ){
+			if( unsupported ){
 				tabList[i].addEventListener( 'focus',function(){
 					setTooltip( this );
 				},false);
@@ -69,10 +73,6 @@ function AccessTooltip(options){
 			}
 		}
 	}
-	/* set displaying delay */
-	var timeoutID;
-	/* IE11 detection */
-	var unsupported = Unsupported();
 	/* *** AccessTooltip dependencies *** */
 	function setTooltip( obj, reset, mouse ){
 		if( reset ){
