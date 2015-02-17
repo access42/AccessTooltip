@@ -18,6 +18,8 @@ Copyright (c) 2015 Access42, access42.net
 	- optionnal tooltipUp : false to set the tooltip above, true to set over the focused element
 	- optionnal mouse : false to ignore, true to set mouse mode(replace native title by tooltip on mouseover)
 	- optionnal tempDelay : displaying delay in millisecondes ( O to ignore)
+	- optionnal useAriaDP : true to use the tooltip design pattern ARIA
+	- optionnal useEscClose : true to allow tooltip closed by ESC Key (note : true by default when useAriaDP is set)
 
     *** implementation ***
 Insert this code right before the closing </body> element of your HTML document. 
@@ -29,7 +31,9 @@ Insert this code right before the closing </body> element of your HTML document.
 		toolTipBetween : 5,
 		toolTipUp : false,
 		mouse : true,
-		tempDelay : 4000
+		tempDelay : 4000,
+		useAriaDP : false,
+		useEscClose : true
 	});
 </script>
 
@@ -47,12 +51,14 @@ function AccessTooltip(options){
 	document.body.appendChild( divTooltip );
 	divTooltip.setAttribute( 'id','AccessibleTooltip' );
 	divTooltip.setAttribute( 'class', options.tooltipClassName );
+	if ( options.useAriaDP ) divTooltip.setAttribute( 'role', 'tooltip' );
 	divTooltip.style.display = 'none';
 	/* set elements targeted */
 	var tabList = document.querySelectorAll(options.objs);
 	for ( var i = 0, len = tabList.length ; i < len ; i++ ){
-		if( tabList[i].getAttribute( 'title' ) ) {
+		if ( tabList[i].getAttribute( 'title' ) ) {
 			tabList[i].setAttribute('tabindex','0');
+			if( options.useAriaDP ) tabList[i].setAttribute('aria-describedby','AccessibleTooltip');
 			//set Event listeners
 			if( unsupported ){
 				tabList[i].addEventListener( 'focus',function(){
@@ -107,10 +113,22 @@ function AccessTooltip(options){
 						}
 					}, options.tempDelay);
 				}
+				if( options.useAriaDP || options.useEscClose ) {
+					document.addEventListener( 'keydown', escClose, false );
+				}
 			}
 			else{
 				obj.removeAttribute( 'title' );
 			}
+		}
+	}
+	function escClose( event ){
+		if( event.keyCode === 27 ){
+			if( divTooltip.firstChild ) {
+				divTooltip.removeChild( divTooltip.firstChild );
+				divTooltip.style.display = 'none';
+			}
+			document.removeEventListener( 'keydown', escClose , false );
 		}
 	}
 	function clearTooltip ( obj, mouse ){

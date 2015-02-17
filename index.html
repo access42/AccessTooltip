@@ -77,6 +77,7 @@ Ctooltip{
 	- optionnel tooltipUp : false pour faire apparaitre la bulle d'aide en dessous de l'élément selectionné, true pour la faire apparaitre au dessus
 	- optionnel mouse : true pour remplacer, à la souris, le title par la bulle d'aide
 	- optionnel tempDelay : temps d'affichage de la bulle d'aide en millisecondes (0 pour qu'elle reste visible jusqu'à la perte de focus)
+	- optionnel useAriaDP : utiliser le design pattern ARIA tooltip
 */
 &lt;script type="text/javascript"&gt;
 AccessTooltip({
@@ -85,7 +86,8 @@ AccessTooltip({
 	toolTipBetween : 5,
 	toolTipUp : false,
 	mouse : true,
-	tempDelay : 4000
+	tempDelay : 4000,
+	useAriaDP : true
 });
 &lt;/script&gt;
 </code>
@@ -107,7 +109,9 @@ AccessTooltip({
 		toolTipBetween : 5,
 		toolTipUp : false,
 		mouse : true,
-		tempDelay : 4000
+		tempDelay : 4000,
+		useAriaDP : false,
+		useEscClose : true
 	});
 </script>
 </body>
