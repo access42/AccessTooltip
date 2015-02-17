@@ -25,7 +25,7 @@
 	<main role="main">
 		<section>
 			<h2 class="CTitre" id="presentation" tabindex="-1">Présentation</h2>
-			<p>AccessTooltip est une fonctionJavaScript permettant de rendre les <code>title</code> accessibles au clavier</p>
+			<p>AccessTooltip est une fonction JavaScript permettant de rendre les <code>title</code> accessibles au clavier</p>
 			<h3>Comment ça fonctionne ?</h3>
 			<p>La <code>fonction</code> génère une infobulle accesssible au clavier via la touche de <kbd>tabulation</kbd> pour tous les éléments passés en paramètre, possédant un <code>title</code>.</p>
 			<h3>Démonstration</h3>
@@ -77,7 +77,8 @@ Ctooltip{
 	- optionnel tooltipUp : false pour faire apparaitre la bulle d'aide en dessous de l'élément selectionné, true pour la faire apparaitre au dessus
 	- optionnel mouse : true pour remplacer, à la souris, le title par la bulle d'aide
 	- optionnel tempDelay : temps d'affichage de la bulle d'aide en millisecondes (0 pour qu'elle reste visible jusqu'à la perte de focus)
-	- optionnel useAriaDP : utiliser le design pattern ARIA tooltip
+	- optionnel useAriaDP : true pour utiliser le design pattern ARIA tooltip
+	- optionnel useEscClose : true pour autoriser la fermeture de l'infobulle via la touche ESC (true par défaut avec le DP ARIA tooltip)
 */
 &lt;script type="text/javascript"&gt;
 AccessTooltip({
@@ -87,7 +88,8 @@ AccessTooltip({
 	toolTipUp : false,
 	mouse : true,
 	tempDelay : 4000,
-	useAriaDP : true
+	useAriaDP : false,
+	useEscClose : true
 });
 &lt;/script&gt;
 </code>
