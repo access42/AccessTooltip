@@ -87,7 +87,7 @@ Puis appeler la fonction de la même manière
 - requis objs : liste des sélecteurs CSS correspondant aux éléments à traiter.
 - requis tooltipClassName : classe CSS utilisée pour la bulle d'aide
 - requis toolTipBetween : décalage vertical, en pixel, entre la bulle d'aide et l'élément selectionné
-- optionnel tooltipUp : false pour faire apparaitre la bulle d'aide en dessous de l'élément selectionné, true pour la faire apparaitre au dessus
+- optionnel tooltipUp : false pour faire apparaître la bulle d'aide en dessous de l'élément selectionné, true pour la faire apparaitre au dessus
 - optionnel mouse : true pour remplacer, à la souris, le title par la bulle d'aide
 - optionnel tempDelay : temps d'affichage de la bulle d'aide en millisecondes (0 pour qu'elle reste visible jusqu'à la perte de focus)
 - optionnel useAriaDP : true pour utiliser le design pattern ARIA tooltip
