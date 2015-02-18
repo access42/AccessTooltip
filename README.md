@@ -6,11 +6,11 @@ A lightweight Javascript function to make the title attribute accessible for key
 # Instruction ([French version bellow](#french-version))
 
 ## Implementation
-Insert the code right before the closing </body> element of your HTML document. 
+Insert the code right before the closing &lt;/body&gt; element of your HTML document. 
 
 	&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
 
-Then call the function right before the closing </body> element of your HTML document.
+Then call the function right before the closing &lt;/body&gt; element of your HTML document.
 
 	&lt;script type="text/javascript"&gt;
 	AccessTooltip({
@@ -59,7 +59,7 @@ Then call the function right before the closing </body> element of your HTML doc
 
 ## Implémentation
 
-Insérer le code de la fonction juste avant la balise de fermeture du body :
+Insérer le code de la fonction juste avant la balise de fermeture du &lt;/body&gt; :
 
 	&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
 
