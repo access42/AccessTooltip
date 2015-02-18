@@ -6,13 +6,15 @@ A lightweight Javascript function to make the title attribute accessible for key
 # Instruction ([French version bellow](#french-version))
 
 ## Implementation
-Insert the code right before the closing &lt;/body&gt; element of your HTML document. 
-
-	&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
+Insert the code right before the closing `</body>` element of your HTML document. 
+```html
+<script type="text/javascript" src="AccessTooltip.js"></script>
+```
 
 Then call the function right before the closing &lt;/body&gt; element of your HTML document.
 
-	&lt;script type="text/javascript"&gt;
+```javascript
+<script type="text/javascript">
 	AccessTooltip({
 		objs : 'a, button, input, textarea, select',
 		tooltipClassName : 'Ctooltip',
@@ -23,8 +25,8 @@ Then call the function right before the closing &lt;/body&gt; element of your HT
 		useAriaDP : false,
 		useEscClose : true
 	});
-	&lt;/script&gt;
-
+</script>
+```
 ## Parameters
 - required objs : query selector for elements to set (tagName or any CSS selector)
 - required tooltipClassName : tooltip CSS design classname
@@ -37,6 +39,7 @@ Then call the function right before the closing &lt;/body&gt; element of your HT
 
 ## Finally, create a CSS class for the tooltip, for example :
 
+```css
 	Ctooltip{
 		position:absolute;
 		background-color:#FFFFF0;
@@ -47,7 +50,7 @@ Then call the function right before the closing &lt;/body&gt; element of your HT
 		color:#000;
 		font-size:80%;
 	}
-
+```
 
 ## Demonstration
 
@@ -60,23 +63,25 @@ Then call the function right before the closing &lt;/body&gt; element of your HT
 ## Implémentation
 
 Insérer le code de la fonction juste avant la balise de fermeture du &lt;/body&gt; :
-
-	&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
-
+```html
+<script type="text/javascript" src="AccessTooltip.js"></script>
+```
 Puis appeler la fonction de la même manière
 
-	&lt;script type="text/javascript"&gt;
-		AccessTooltip({
-			objs : 'a, button, input, textarea, select',
-			tooltipClassName : 'Ctooltip',
-			toolTipBetween : 5,
-			toolTipUp : false,
-			mouse : true,
-			tempDelay : 4000,
-			useAriaDP : false,
-			useEscClose : true
-		});
-	&lt;/script&gt;
+```javascript
+<script type="text/javascript">
+	AccessTooltip({
+		objs : 'a, button, input, textarea, select',
+		tooltipClassName : 'Ctooltip',
+		toolTipBetween : 5,
+		toolTipUp : false,
+		mouse : true,
+		tempDelay : 4000,
+		useAriaDP : false,
+		useEscClose : true
+	});
+</script>
+```
 
 ## Paramètres
 - requis objs : liste des sélecteurs CSS correspondant aux éléments à traiter.
@@ -90,6 +95,7 @@ Puis appeler la fonction de la même manière
 
 ## Enfin créer une classe CSS pour l'infobulle, par exemple :
 
+```css
 	Ctooltip{
 		position:absolute;
 		background-color:#FFFFF0;
@@ -100,6 +106,7 @@ Puis appeler la fonction de la même manière
 		color:#000;
 		font-size:80%;
 	}
+```
 
 ## Démonstration
 
