@@ -40,7 +40,7 @@ Then call the function right before the closing &lt;/body&gt; element of your HT
 ## Finally, create a CSS class for the tooltip, for example :
 
 ```css
-	Ctooltip{
+	.Ctooltip{
 		position:absolute;
 		background-color:#FFFFF0;
 		border:1px solid gray;
@@ -96,7 +96,7 @@ Puis appeler la fonction de la même manière
 ## Enfin créer une classe CSS pour l'infobulle, par exemple :
 
 ```css
-	Ctooltip{
+	.Ctooltip{
 		position:absolute;
 		background-color:#FFFFF0;
 		border:1px solid gray;
