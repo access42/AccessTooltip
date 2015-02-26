@@ -27,7 +27,7 @@ Insert this code right before the closing </body> element of your HTML document.
 <script type="text/javascript">
 	AccessTooltip({
 		objs : 'a, button, input, textarea, select',
-		tooltipClassName : 'Ctooltip',
+		tooltipClassName : 'access-tooltip',
 		toolTipBetween : 5,
 		toolTipUp : false,
 		mouse : true,
