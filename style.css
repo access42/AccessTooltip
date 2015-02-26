@@ -131,7 +131,7 @@ code{
 	line-height: 0;
 	height: 0;
 }
-.Ctooltip{
+.access-tooltip{
 	position:absolute;
 	z-index:1000;
 	left: - 10000000px;

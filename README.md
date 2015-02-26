@@ -17,7 +17,7 @@ Then call the function right before the closing &lt;/body&gt; element of your HT
 <script type="text/javascript">
 	AccessTooltip({
 		objs : 'a, button, input, textarea, select',
-		tooltipClassName : 'Ctooltip',
+		tooltipClassName : 'access-tooltip',
 		toolTipBetween : 5,
 		toolTipUp : false,
 		mouse : true,
@@ -54,7 +54,8 @@ Then call the function right before the closing &lt;/body&gt; element of your HT
 
 ## Demonstration
 
-<a href="http://www.access42.net">Access42.net</a>
+* <a href="http://www.access42.net">Access42.net</a>
+* <a href="http://access42.net/AccessTooltip-rendre-le-title-accessible-au-clavier.html">AccessTooltip homepage project (french)</a>
 
 <a id="french-version"></a>
 
@@ -72,7 +73,7 @@ Puis appeler la fonction de la même manière
 <script type="text/javascript">
 	AccessTooltip({
 		objs : 'a, button, input, textarea, select',
-		tooltipClassName : 'Ctooltip',
+		tooltipClassName : 'access-tooltip',
 		toolTipBetween : 5,
 		toolTipUp : false,
 		mouse : true,
@@ -110,4 +111,5 @@ Puis appeler la fonction de la même manière
 
 ## Démonstration
 
-<a href="http://www.access42.net">Access42.net</a>
+* <a href="http://www.access42.net">Access42.net</a>
+* <a href="http://access42.net/AccessTooltip-rendre-le-title-accessible-au-clavier.html">Page d'accueil du projet</a>
