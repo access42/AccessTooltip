@@ -3,7 +3,7 @@ AccessTooltip
 
 A lightweight Javascript function to make the title attribute accessible for keyboard user.
 
-# Instruction ([French version bellow](#french-version))
+# Instruction ([French version below](#french-version))
 
 ## Implementation
 Insert the code right before the closing `</body>` element of your HTML document. 
