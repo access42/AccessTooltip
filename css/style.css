@@ -92,11 +92,13 @@ pre code{
 	border-top:0;
 	color:#666;
 }
+
 .lang a:hover,
 .lang a:focus{
 	background:#666;
 	color:#fff;
 }
+
 h1{
 	margin-top:1em;
 	font-weight:normal;
@@ -214,11 +216,11 @@ input{
 	position:absolute;
 	z-index:1000;
 	left: - 10000000px;
-	background-color:#FFFFF0;
+	background-color:#fff;
 	border:1px solid gray;
 	border-radius:3px;
-	padding:3px;
-	box-shadow:2px 2px 2px #000;
+	padding:0 3px;
+	box-shadow:0 0 6px #999;
 	color:#000;
 	font-size:80%;
 }
