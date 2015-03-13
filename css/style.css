@@ -1,0 +1,212 @@
+*{
+	box-sizing:border-box;
+}
+
+
+body{
+	background:#f6f6f6;
+	font-family:sans-serif;
+	margin:0;
+	color:#333;
+	line-height:160%
+}
+
+a,a:hover,a:focus{
+	transition:all 500ms ease;
+}
+
+*:focus{
+	outline:2px solid orange;
+}
+
+.wrapper{
+	width:80%;
+	max-width:900px;
+	margin:auto;
+}
+
+
+@media screen and (min-width:60em){
+	.left{
+		width:20%;
+		float:left;
+		position:fixed;
+		overflow-y:auto;
+	}
+
+	.right{
+		padding-top:2em;
+		width:70%;
+		margin-left:35%;
+		float:left;
+	}
+}
+
+footer{
+	clear:both
+}
+
+code,kbd{
+	border:1px solid #ddd;
+	background:#eee;
+	padding:0 3px;
+	border-radius:3px;
+}
+
+pre code{
+	border:0
+}
+
+.help{
+	padding:0;
+	margin:0;
+	line-height:120%
+}
+
+.help li{
+	list-style:none;
+	display:inline-block;
+}
+
+.help li a{
+	display:block;
+	text-decoration:none;
+	background:#AD4D9F;
+	color:#fff;
+	font-weight:bold;
+	padding:3px 10px;
+	border-radius:0 0 3px 3px;
+	font-size:80%;
+}
+
+.help li a:hover,
+.help li a:focus{
+	background:#ff6600;
+	color:#000;
+}
+
+h1{
+	margin-top:1em;
+	font-weight:normal;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+.project-by{
+	display:block;
+	font-size:60%
+}
+
+.project-by img{
+	width:80px;
+}
+
+.baseline{
+	font-weight:bold;
+}
+
+.inline-list ul,
+.inline-list{
+	padding:0
+}
+
+.inline-list li{
+	float:left;
+	list-style:none;
+}
+
+.inline-list:after{
+	content:'';
+	display:block;
+	clear:both;
+}
+
+.download li{
+	line-height:120%;
+	width:50%;
+}
+
+.download li a{
+	font-size:90%;
+	color:#333;
+	text-align:center;
+	padding:10px;	
+	background:#eee;
+	border:1px solid #ddd;
+	text-decoration:none;
+	display:block;
+}
+
+.download span{
+	display:block;
+	font-size:70%
+}
+
+.download li:first-child a{
+	border-radius:3px 0 0 3px;
+	border-right:0
+}
+
+.download li:nth-child(2) a{
+	border-radius:0 3px 3px 0
+}
+
+.download a:hover,
+.download a:focus{
+	background:#AD4D9F;
+	color:white;
+}
+
+.navigation li{
+	list-style-type:square;
+}
+
+.navigation a{
+	color:#333;
+}
+.navigation a:hover,
+.navigation a:focus{
+	color:#ff6600;
+}
+
+h2{
+	font-size:130%;
+	font-weight:normal;
+	border-bottom:1px solid #AD4D9F;
+	clear:both
+}
+
+h3{
+	font-size:100%;
+}
+
+h4{
+	text-transform:uppercase;
+	font-size:80%;
+	line-height:90%
+	
+}
+@media screen and (min-width:60em){
+	.col-1-4{
+		width:25%;
+		float:left;
+		text-align:center;
+	}
+}
+
+input{
+	max-width:100%
+}
+
+.Ctooltip{
+	position:absolute;
+	z-index:1000;
+	left: - 10000000px;
+	background-color:#FFFFF0;
+	border:1px solid gray;
+	border-radius:3px;
+	padding:3px;
+	box-shadow:2px 2px 2px #000;
+	color:#000;
+	font-size:80%;
+}
