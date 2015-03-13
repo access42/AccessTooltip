@@ -22,12 +22,12 @@
 
 	<header role="banner">
 		<h1>AccessTooltip <span class="project-by">by <a href="http://access42.net/"><img src="../img/access42.png" alt="Access42" /></a></h1>
-		<p class="baseline">A lightweight Javascript function to make the title attribute accessible for keyboard user.</p>
+		<p class="baseline"><img style="float:left;margin-right:10px" src="../img/tab.png" alt="" />A lightweight Javascript function to make the <code>title</code> attribute accessible for keyboard users.</p>
 	</header>
 	<nav role="navigation" class="navigation" aria-label="navigation menu">
 		<ul id="menu">
 			<li><a href="#presentation">Presentation</a></li>
-			<li><a href="#imple">How to use it</a></li>
+			<li><a href="#imple">How to use it?</a></li>
 		</ul>
 	</nav>
 
@@ -46,14 +46,14 @@
 	<main role="main" id="main">
 		<section>
 			<h2 id="presentation" tabindex="-1">Presentation</h2>
-			<h3>How it works ?</h3>
-			<p>The <code>function</code> add a tooltip accessible with keyboard, by using the tab key for every element pour tous les éléments passés en paramètre, possédant un <code>title</code>.</p>
-			<h3>Démonstrations</h3>
+			<h3>How to use it ? ?</h3>
+			<p>The functionality generates a tooltip that is keyboard accessible via the <kbd>tab</kbd> key for all elements with a <code>title</code> stored in parameter.</p>
+			<h3>Demonstrations</h3>
 			
 			<div>
 				<h4>Links</h4>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href="http://access42.net/MFP-lecteur-video-accessible.html" title="MFP accessible video player">MFP VideoPlayer</a></p>
-				<p><a href="http://access42.net/MFP-lecteur-video-accessible.html" title="Title 2">Lien 2</a></p>
+				<p><a href="http://access42.net/MFP-lecteur-video-accessible.html" title="Title 2">Link 2</a></p>
 			</div>
 			<div class="col-1-4">
 				<h4>Abbreviation</h4>
@@ -69,20 +69,20 @@
 			<p><img src="../img/access42.png" title="Digital Accessibility: Engineering, Consulting & Training " alt="Access42.net" /></p>
 			</div>
 			<div class="col-1-4">
-			<h4>Input</h4>
+			<h4>Form control</h4>
 			<form>
-				<input type="text" title="an input, labelled with a title" />
+				<input type="text" title="a form control, labelled by a title" />
 			</form>
 			</div>
 		</section>
 		<section>
-			<h2 class="CTitre" id="imple" tabindex="-1">How to use it</h2>
-			<p>Insert the code right before the closing <code>body</code>element of your HTML document. </p>
+			<h2 class="CTitre" id="imple" tabindex="-1">How to use it ?</h2>
+			<p>Insert the code as last element of the <code>body</code> tag.</p>
 <pre>
 <code class="html">&lt;script type="text/javascript" src="AccessTooltip.js"&gt;&lt;/script&gt;
 </code>
 </pre>
-			<p>Create a CSS class for the tooltip (Beware : the "absolute" position is required) :</p>
+			<p>Create a CSS class to style the tooltip (warning : <code>absolute</code> position is required) :</p>
 <pre>
 <code>Ctooltip{
 	position:absolute;
@@ -96,9 +96,8 @@
 }
 </code>
 </pre>
-			<p>Then call the function right before the closing <code>body</code> element of your HTML document and use paramters to configure the tooltip : </p>
-<pre>
-<code class="javascript">&lt;script type="text/javascript"&gt;
+			<p>Insert the function as last element of the <code>body</code> tag and use setting parameters : </p>
+<pre><code class="javascript">&lt;script type="text/javascript"&gt;
 AccessTooltip({
 	objs : 'a, button, input, textarea, select',
 	tooltipClassName : 'Ctooltip',
@@ -110,8 +109,7 @@ AccessTooltip({
 	useEscClose : true
 });
 &lt;/script&gt;
-</code>
-</pre>	
+</code></pre>
 		</section>
 	</main>
 </div>
