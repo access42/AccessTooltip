@@ -23,22 +23,21 @@ a,a:hover,a:focus{
 	width:80%;
 	max-width:900px;
 	margin:auto;
+	position:relative;
 }
 
 
 @media screen and (min-width:60em){
 	.left{
 		width:20%;
-		float:left;
 		position:fixed;
 		overflow-y:auto;
 	}
 
 	.right{
 		padding-top:2em;
-		width:70%;
+		width:65%;
 		margin-left:35%;
-		float:left;
 	}
 }
 
@@ -71,20 +70,33 @@ pre code{
 .help li a{
 	display:block;
 	text-decoration:none;
-	background:#AD4D9F;
-	color:#fff;
-	font-weight:bold;
 	padding:3px 10px;
-	border-radius:0 0 3px 3px;
 	font-size:80%;
+	border-radius:0 0 3px 3px;
 }
 
-.help li a:hover,
-.help li a:focus{
+.access-link a{
+	background:#AD4D9F;
+	color:#fff;
+}
+
+.access-link a:hover,
+.access-link a:focus{
 	background:#ff6600;
 	color:#000;
 }
 
+.lang a{
+	background:#eee;
+	border:1px solid #ddd;
+	border-top:0;
+	color:#666;
+}
+.lang a:hover,
+.lang a:focus{
+	background:#666;
+	color:#fff;
+}
 h1{
 	margin-top:1em;
 	font-weight:normal;
